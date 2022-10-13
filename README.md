@@ -1,2 +1,5 @@
 # Socket-Programming
-An implementation of QA forum in a client-server model using socket programming, Operating System Course (Fall 2021), University of Tehran 
+
+
+In this project, we have a central server that can create rooms for asking questions about 4 subjects. This server always listens on a certain port so that clients can connect to it. People can connect to the server as clients and give the server the number (or name) of the thread they want to enter and ask questions. The server is a process and each client is a separate process.
+The capacity of each room is 3 people. As soon as the number of people in a room reaches the quorum, the server announces a new port to the people of that room so that they can broadcast messages on that port. Each client's connection with the server will be of TCP type, and after a room is filled, the clients' communication with each other will be of UDP broadcast type. Each client has one minute to answer a question. To implement the timer, `SIGALRM` signal and `alarm` system call were used. During the entire program execution, the server must be able to handle multiple clients and their requests at the same time. In this project, with the help of `select` system call, all I/O's are handled without blocking the program execution process.
